@@ -15,7 +15,7 @@ function eventoPresionarTecla() {
             "$('#framePrincipal').attr('src', string).attr('src', string);";
         eval(evaluar);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
 
 }
@@ -24,10 +24,10 @@ function eventoPresionarTecla() {
  * 				FUNCION PARA INSERTAR TEXTO EN PDF
  *********************************************************************************************************/
 function InsertarPDF(text, tipoletra, posicionX, posicionY) {
-    var margen = parseInt(7);
-    altura = parseInt(posicionY);
+    var margen = parseInt(5);
+    altura = parseInt(5);
     doc.setFontType(tipoletra);
-    doc.text(parseInt(margen) + parseInt(posicionX), altura, noNulos(text))
+    doc.text(margen + parseInt(posicionX), altura + + parseInt(posicionY), noNulos(text))
 }
 
 function InsertarPagina() {
