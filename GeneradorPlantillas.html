@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+<!--Jquery-->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
-<!-- Latest compiled and minified CSS -->
+<!--JSPDF-->
+<script type="text/javascript" src="js/jspdf.min.js"></script>
+<script type="text/javascript" src="js/jspdf.plugin.autotable.js"></script>
+<!-- Bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-<!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--PDFJS-->
+<script src="js/pdf.js"></script>
+<script src="js/pdf.worker.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -23,17 +26,29 @@
     
     <div class="container-fluid">
         <br>
-        <div class="col-md-4">
-            <textarea cols="50" rows="27" width="100%" height="550px" style="resize: none;" onkeyup="eventoPresionarTecla()" id="textoArea"></textarea>    
+        <div class="col-md-3" style="overflow: auto;border: #a6c7ff solid;padding: 1px">
+            <textarea cols="250" rows="26" width="100%" height="550px" style="resize: none; border: none;outline: none" onkeyup="eventoPresionarTecla()" id="textoArea"></textarea>
+        </div>
+        <div class="col-md-1">
+            <div class="col-md-12">
+                <button id="upload-button" class="btn-primary btn" style="border: none"><strong>PDF</strong></button>
+                <input class="hide" type="file" id="file-to-upload" accept="application/pdf" />
+                <div class="hide"><canvas id="pdf-canvas" width="2000"></canvas></div>
+            </div>
+            <div class="col-md-12">
+                <button type="button" id="start-button" class="btn-primary btn" style="border: none;margin-top: 10px;" disabled><strong>Generar</strong></button>
+            </div>
+
         </div>
         <div class="col-md-8">
-            <iframe id="framePrincipal" frameborder="1" width="100%" height="550px" scrolling="true"></iframe>
+            <iframe id="framePrincipal" frameborder="1" width="100%" height="550px" scrolling="true" ></iframe>
         </div>
-         
+
     </div>
    
 </body>
+<script src="js/ConviertePDF.js"></script>
+<script src="js/GeneradorPlantillas.js"></script>
 
-<script src="GeneradorPlantillas.js"></script>
 
 </html>
