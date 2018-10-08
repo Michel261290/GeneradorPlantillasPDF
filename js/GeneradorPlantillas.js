@@ -1,9 +1,8 @@
 var doc;
 
 $(document).ready(function () {
-    // $("#textoArea").val('InsertarPlantilla(null,214,0, 0,0); \n' +
-    //     'InsertarTexto("Contrato", "normal",8,20,46);');
-    // eventoPresionarTecla();
+    $("#textoArea").val('InsertarTexto("Contrato", "normal",8,20,46);');
+    eventoPresionarTecla();
 });
 
 function eventoPresionarTecla() {
@@ -16,7 +15,7 @@ function eventoPresionarTecla() {
             "$('#framePrincipal').attr('src', string).attr('src', string);";
         eval(evaluar);
     } catch (error) {
-        console.log(error);
+
     }
 
 }
@@ -26,12 +25,21 @@ function eventoPresionarTecla() {
  *********************************************************************************************************/
 function InsertarTexto(text, tipoletra, tamanio, posicionX, posicionY) {
     try {
+
+        if (typeof text == 'string') {
+            var llaveInicio = text.indexOf("{");
+            var llaveFin = text.indexOf("}");
+            if (llaveInicio != -1 && llaveFin != -1) {
+                text = text.substring((llaveInicio + 1), llaveFin);
+                text = JSON.stringify(eval('data[0].' + text)).replace(/"/g ,"");
+            }
+        }
         var margen = parseInt(5);
         var altura = parseInt(5);
         doc.setFontSize(tamanio);
         doc.setFontType(tipoletra);
         doc.setFont('helvetica');
-        doc.text(margen + parseInt(posicionX), altura + +parseInt(posicionY), noNulos(text));
+        doc.text(margen + parseInt(posicionX), altura +parseInt(posicionY), noNulos(text));
     } catch (e) {
 
     }
@@ -39,12 +47,12 @@ function InsertarTexto(text, tipoletra, tamanio, posicionX, posicionY) {
 
 
 
-function Pagina(numeroPagina){
-    if (numeroPagina==0){
+function Pagina(numeroPagina) {
+    if (numeroPagina == 0) {
         doc.addImage(arreglo[0], 'JPEG', 0, 0, 214, 0);
-    }else{
+    } else {
         doc.addPage();
-        doc.addImage(arreglo[numeroPagina],'JPEG', 0, 0,214, 0);
+        doc.addImage(arreglo[numeroPagina], 'JPEG', 0, 0, 214, 0);
     }
 }
 
@@ -57,17 +65,17 @@ function noNulos(texto) {
 }
 
 
-var json = [
+var data = [
     {
-        "userId": 1,
-        "id": 1,
-        "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        "userId": 15,
+        "id": 10,
+        "title": "esto es una variable de un json",
+        "body":  "esto es otra variable de un jotason"
     },
     {
         "userId": 1,
         "id": 2,
-        "title": "qui est esse",
+        "title": 'qui est esse',
         "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
     },
     {
