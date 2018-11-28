@@ -12,7 +12,7 @@ function eventoPresionarTecla() {
         var evaluar =
             texto +
             "var string = doc.output('datauristring');" +
-            "$('#framePrincipal').attr('src', string).attr('src', string);";
+            "$('#framePrincipal').attr('src', string);";
         eval(evaluar);
     } catch (error) {
 
